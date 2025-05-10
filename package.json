@@ -13,9 +13,11 @@
         "prettier:fix": "prettier --write ."
     },
     "keywords": [
-        "Fstack"
+        "Fstack",
+        "Fstack Dev Team",
+        "Fstack Dev"
     ],
-    "author": "",
+    "author": "Fstack Dev Team",
     "license": "ISC",
     "dependencies": {
         "dotenv": "^16.5.0",
