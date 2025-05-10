@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import pluginJs from '@eslint/js'
 import eslintPluginPrettier from 'eslint-plugin-prettier'
 import globals from 'globals'
@@ -18,16 +19,25 @@ export default [
       'prettier/prettier': [
         'warn',
         {
-          arrowParens: 'always',
-          semi: false,
-          trailingComma: 'none',
-          tabWidth: 2,
-          endOfLine: 'auto',
-          useTabs: false,
-          singleQuote: true,
-          printWidth: 120,
-          jsxSingleQuote: true
+          "arrowParens": "always",
+          "bracketSameLine": false,
+          "bracketSpacing": true,
+          "embeddedLanguageFormatting": "auto",
+          "htmlWhitespaceSensitivity": "css",
+          "insertPragma": false,
+          "jsxSingleQuote": false,
+          "printWidth": 120,
+          "proseWrap": "preserve",
+          "quoteProps": "as-needed",
+          "requirePragma": false,
+          "semi": true,
+          "singleQuote": true,
+          "tabWidth": 4,
+          trailingComma: 'all',
+          "useTabs": false,
+          "vueIndentScriptAndStyle": false
         }
+
       ]
     },
     ignores: ['**/node_modules/', '**/dist/']
