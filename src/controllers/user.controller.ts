@@ -4,7 +4,8 @@ import User from '~/models/user.model';
 export async function createUser(req: Request, res: Response) {
     try {
         const user = await User.create(req.body);
-        res.status(201).json(user);
+        const result = await User.findByPk(user.id, { include: { all: true, nested: true } });
+        res.status(201).json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to create user' });
@@ -13,7 +14,7 @@ export async function createUser(req: Request, res: Response) {
 
 export async function getUsers(_req: Request, res: Response) {
     try {
-        const users = await User.findAll();
+        const users = await User.findAll({ include: { all: true, nested: true } });
         res.json(users);
     } catch (error) {
         console.error(error);
@@ -23,7 +24,7 @@ export async function getUsers(_req: Request, res: Response) {
 
 export async function getUserById(req: Request, res: Response) {
     try {
-        const user = await User.findByPk(req.params.id);
+        const user = await User.findByPk(req.params.id, { include: { all: true, nested: true } });
         if (user) {
             res.json(user);
         } else {
@@ -39,7 +40,7 @@ export async function updateUser(req: Request, res: Response) {
     try {
         const [updated] = await User.update(req.body, { where: { id: req.params.id } });
         if (updated) {
-            const user = await User.findByPk(req.params.id);
+            const user = await User.findByPk(req.params.id, { include: { all: true, nested: true } });
             res.json(user);
         } else {
             res.status(404).json({ error: 'User not found' });

@@ -4,7 +4,8 @@ import UserExam from '~/models/userExam.model';
 export async function createUserExam(req: Request, res: Response) {
     try {
         const item = await UserExam.create(req.body);
-        res.status(201).json(item);
+        const result = await UserExam.findByPk(item.id, { include: { all: true, nested: true } });
+        res.status(201).json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to create user exam' });
@@ -13,7 +14,7 @@ export async function createUserExam(req: Request, res: Response) {
 
 export async function getUserExams(_req: Request, res: Response) {
     try {
-        const items = await UserExam.findAll();
+        const items = await UserExam.findAll({ include: { all: true, nested: true } });
         res.json(items);
     } catch (error) {
         console.error(error);
@@ -23,7 +24,7 @@ export async function getUserExams(_req: Request, res: Response) {
 
 export async function getUserExamById(req: Request, res: Response) {
     try {
-        const item = await UserExam.findByPk(req.params.id);
+        const item = await UserExam.findByPk(req.params.id, { include: { all: true, nested: true } });
         if (item) {
             res.json(item);
         } else {
@@ -39,7 +40,7 @@ export async function updateUserExam(req: Request, res: Response) {
     try {
         const [updated] = await UserExam.update(req.body, { where: { id: req.params.id } });
         if (updated) {
-            const item = await UserExam.findByPk(req.params.id);
+            const item = await UserExam.findByPk(req.params.id, { include: { all: true, nested: true } });
             res.json(item);
         } else {
             res.status(404).json({ error: 'User exam not found' });

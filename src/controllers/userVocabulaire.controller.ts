@@ -4,7 +4,8 @@ import UserVocabulaire from '~/models/userVocabulaire.model';
 export async function createUserVocabulaire(req: Request, res: Response) {
     try {
         const item = await UserVocabulaire.create(req.body);
-        res.status(201).json(item);
+        const result = await UserVocabulaire.findByPk(item.id, { include: { all: true, nested: true } });
+        res.status(201).json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to create user vocabulaire' });
@@ -13,7 +14,7 @@ export async function createUserVocabulaire(req: Request, res: Response) {
 
 export async function getUserVocabulaires(_req: Request, res: Response) {
     try {
-        const items = await UserVocabulaire.findAll();
+        const items = await UserVocabulaire.findAll({ include: { all: true, nested: true } });
         res.json(items);
     } catch (error) {
         console.error(error);
@@ -23,7 +24,7 @@ export async function getUserVocabulaires(_req: Request, res: Response) {
 
 export async function getUserVocabulaireById(req: Request, res: Response) {
     try {
-        const item = await UserVocabulaire.findByPk(req.params.id);
+        const item = await UserVocabulaire.findByPk(req.params.id, { include: { all: true, nested: true } });
         if (item) {
             res.json(item);
         } else {
@@ -39,7 +40,7 @@ export async function updateUserVocabulaire(req: Request, res: Response) {
     try {
         const [updated] = await UserVocabulaire.update(req.body, { where: { id: req.params.id } });
         if (updated) {
-            const item = await UserVocabulaire.findByPk(req.params.id);
+            const item = await UserVocabulaire.findByPk(req.params.id, { include: { all: true, nested: true } });
             res.json(item);
         } else {
             res.status(404).json({ error: 'User vocabulaire not found' });

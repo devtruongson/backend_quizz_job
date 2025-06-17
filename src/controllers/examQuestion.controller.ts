@@ -4,7 +4,8 @@ import ExamQuestion from '~/models/examQuestion.model';
 export async function createExamQuestion(req: Request, res: Response) {
     try {
         const item = await ExamQuestion.create(req.body);
-        res.status(201).json(item);
+        const result = await ExamQuestion.findByPk(item.id, { include: { all: true, nested: true } });
+        res.status(201).json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to create exam question' });
@@ -13,7 +14,7 @@ export async function createExamQuestion(req: Request, res: Response) {
 
 export async function getExamQuestions(_req: Request, res: Response) {
     try {
-        const items = await ExamQuestion.findAll();
+        const items = await ExamQuestion.findAll({ include: { all: true, nested: true } });
         res.json(items);
     } catch (error) {
         console.error(error);
@@ -23,7 +24,7 @@ export async function getExamQuestions(_req: Request, res: Response) {
 
 export async function getExamQuestionById(req: Request, res: Response) {
     try {
-        const item = await ExamQuestion.findByPk(req.params.id);
+        const item = await ExamQuestion.findByPk(req.params.id, { include: { all: true, nested: true } });
         if (item) {
             res.json(item);
         } else {
@@ -39,7 +40,7 @@ export async function updateExamQuestion(req: Request, res: Response) {
     try {
         const [updated] = await ExamQuestion.update(req.body, { where: { id: req.params.id } });
         if (updated) {
-            const item = await ExamQuestion.findByPk(req.params.id);
+            const item = await ExamQuestion.findByPk(req.params.id, { include: { all: true, nested: true } });
             res.json(item);
         } else {
             res.status(404).json({ error: 'Exam question not found' });

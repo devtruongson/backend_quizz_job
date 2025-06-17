@@ -4,7 +4,8 @@ import Topic from '~/models/topic.model';
 export async function createTopic(req: Request, res: Response) {
     try {
         const topic = await Topic.create(req.body);
-        res.status(201).json(topic);
+        const result = await Topic.findByPk(topic.id, { include: { all: true, nested: true } });
+        res.status(201).json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to create topic' });
@@ -13,7 +14,7 @@ export async function createTopic(req: Request, res: Response) {
 
 export async function getTopics(_req: Request, res: Response) {
     try {
-        const topics = await Topic.findAll();
+        const topics = await Topic.findAll({ include: { all: true, nested: true } });
         res.json(topics);
     } catch (error) {
         console.error(error);
@@ -23,7 +24,7 @@ export async function getTopics(_req: Request, res: Response) {
 
 export async function getTopicById(req: Request, res: Response) {
     try {
-        const topic = await Topic.findByPk(req.params.id);
+        const topic = await Topic.findByPk(req.params.id, { include: { all: true, nested: true } });
         if (topic) {
             res.json(topic);
         } else {
@@ -39,7 +40,7 @@ export async function updateTopic(req: Request, res: Response) {
     try {
         const [updated] = await Topic.update(req.body, { where: { id: req.params.id } });
         if (updated) {
-            const topic = await Topic.findByPk(req.params.id);
+            const topic = await Topic.findByPk(req.params.id, { include: { all: true, nested: true } });
             res.json(topic);
         } else {
             res.status(404).json({ error: 'Topic not found' });

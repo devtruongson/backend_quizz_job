@@ -4,7 +4,8 @@ import Vocabulaire from '~/models/vocabulaire.model';
 export async function createVocabulaire(req: Request, res: Response) {
     try {
         const vocabulaire = await Vocabulaire.create(req.body);
-        res.status(201).json(vocabulaire);
+        const result = await Vocabulaire.findByPk(vocabulaire.id, { include: { all: true, nested: true } });
+        res.status(201).json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to create vocabulaire' });
@@ -13,7 +14,7 @@ export async function createVocabulaire(req: Request, res: Response) {
 
 export async function getVocabulaires(_req: Request, res: Response) {
     try {
-        const data = await Vocabulaire.findAll();
+        const data = await Vocabulaire.findAll({ include: { all: true, nested: true } });
         res.json(data);
     } catch (error) {
         console.error(error);
@@ -23,7 +24,7 @@ export async function getVocabulaires(_req: Request, res: Response) {
 
 export async function getVocabulaireById(req: Request, res: Response) {
     try {
-        const vocabulaire = await Vocabulaire.findByPk(req.params.id);
+        const vocabulaire = await Vocabulaire.findByPk(req.params.id, { include: { all: true, nested: true } });
         if (vocabulaire) {
             res.json(vocabulaire);
         } else {
@@ -39,7 +40,7 @@ export async function updateVocabulaire(req: Request, res: Response) {
     try {
         const [updated] = await Vocabulaire.update(req.body, { where: { id: req.params.id } });
         if (updated) {
-            const vocabulaire = await Vocabulaire.findByPk(req.params.id);
+            const vocabulaire = await Vocabulaire.findByPk(req.params.id, { include: { all: true, nested: true } });
             res.json(vocabulaire);
         } else {
             res.status(404).json({ error: 'Vocabulaire not found' });
