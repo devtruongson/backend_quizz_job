@@ -20,15 +20,15 @@ export default class VocabulaireQuestion
     extends Model<VocabulaireQuestionAttributes, VocabulaireQuestionCreationAttributes>
     implements VocabulaireQuestionAttributes
 {
-    public id!: number;
-    public audio_vi?: string;
-    public audio_en?: string;
-    public image?: string;
-    public title_vi?: string;
-    public title_en?: string;
-    public description_vi?: string;
-    public description_en?: string;
-    public vocabulaireId!: number;
+    id!: number;
+    audio_vi?: string;
+    audio_en?: string;
+    image?: string;
+    title_vi?: string;
+    title_en?: string;
+    description_vi?: string;
+    description_en?: string;
+    vocabulaireId!: number;
 }
 
 VocabulaireQuestion.init(

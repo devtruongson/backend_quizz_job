@@ -10,11 +10,12 @@ export interface UserAttributes {
 
 export type UserCreationAttributes = Optional<UserAttributes, 'id' | 'role'>;
 
-export default class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
-    public id!: number;
-    public email!: string;
-    public password!: string;
-    public role!: 'user' | 'admin';
+export default class User extends Model<UserAttributes, UserCreationAttributes> {
+    // Type declarations for TypeScript without public class fields
+    declare id: number;
+    declare email: string;
+    declare password: string;
+    declare role: 'user' | 'admin';
 }
 
 User.init(

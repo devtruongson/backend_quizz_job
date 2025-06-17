@@ -15,10 +15,10 @@ export default class ExamQuestion
     extends Model<ExamQuestionAttributes, ExamQuestionCreationAttributes>
     implements ExamQuestionAttributes
 {
-    public id!: number;
-    public vocabulaireQuestionId!: number;
-    public answer?: string;
-    public isCorrect?: boolean;
+    id!: number;
+    vocabulaireQuestionId!: number;
+    answer?: string;
+    isCorrect?: boolean;
 }
 
 ExamQuestion.init(

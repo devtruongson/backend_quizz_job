@@ -1,8 +1,26 @@
 import { Request, Response } from 'express';
 import UserExam from '~/models/userExam.model';
+import User from '~/models/user.model';
 
 export async function createUserExam(req: Request, res: Response) {
     try {
+        const { userId, list } = req.body;
+        
+        // Validate required fields
+        if (!userId) {
+            return res.status(400).json({ 
+                error: 'userId is required' 
+            });
+        }
+
+        // Check if user exists
+        const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(400).json({ 
+                error: 'User not found with the provided userId' 
+            });
+        }
+
         const item = await UserExam.create(req.body);
         const result = await UserExam.findByPk(item.id, { include: { all: true, nested: true } });
         res.status(201).json(result);

@@ -1,8 +1,33 @@
 import { Request, Response } from 'express';
 import VocabulaireQuestion from '~/models/vocabulaireQuestion.model';
+import Vocabulaire from '~/models/vocabulaire.model';
 
 export async function createVocabulaireQuestion(req: Request, res: Response) {
     try {
+        const { vocabulaireId, title_vi, title_en } = req.body;
+        
+        // Validate required fields
+        if (!vocabulaireId) {
+            return res.status(400).json({ 
+                error: 'vocabulaireId is required' 
+            });
+        }
+
+        // Check if vocabulaire exists
+        const vocabulaire = await Vocabulaire.findByPk(vocabulaireId);
+        if (!vocabulaire) {
+            return res.status(400).json({ 
+                error: 'Vocabulaire not found with the provided vocabulaireId' 
+            });
+        }
+
+        // Validate that at least one title is provided
+        if (!title_vi && !title_en) {
+            return res.status(400).json({ 
+                error: 'At least one of title_vi or title_en is required' 
+            });
+        }
+
         const item = await VocabulaireQuestion.create(req.body);
         const result = await VocabulaireQuestion.findByPk(item.id, { include: { all: true, nested: true } });
         res.status(201).json(result);

@@ -13,8 +13,8 @@ export default class Vocabulaire
     extends Model<VocabulaireAttributes, VocabulaireCreationAttributes>
     implements VocabulaireAttributes
 {
-    public id!: number;
-    public topicId!: number;
+    id!: number;
+    topicId!: number;
 }
 
 Vocabulaire.init(

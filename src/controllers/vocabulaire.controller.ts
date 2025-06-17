@@ -1,8 +1,26 @@
 import { Request, Response } from 'express';
 import Vocabulaire from '~/models/vocabulaire.model';
+import Topic from '~/models/topic.model';
 
 export async function createVocabulaire(req: Request, res: Response) {
     try {
+        const { topicId } = req.body;
+        
+        // Validate required fields
+        if (!topicId) {
+            return res.status(400).json({ 
+                error: 'topicId is required' 
+            });
+        }
+
+        // Check if topic exists
+        const topic = await Topic.findByPk(topicId);
+        if (!topic) {
+            return res.status(400).json({ 
+                error: 'Topic not found with the provided topicId' 
+            });
+        }
+
         const vocabulaire = await Vocabulaire.create(req.body);
         const result = await Vocabulaire.findByPk(vocabulaire.id, { include: { all: true, nested: true } });
         res.status(201).json(result);

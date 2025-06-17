@@ -21,12 +21,12 @@ export default class UserVocabulaire
     extends Model<UserVocabulaireAttributes, UserVocabulaireCreationAttributes>
     implements UserVocabulaireAttributes
 {
-    public id!: number;
-    public userId!: number;
-    public vocabulaireId!: number;
-    public status!: 'start' | 'doing' | 'completed';
-    public percentComplete?: number;
-    public vocabulaireQuestionListId?: string;
+    id!: number;
+    userId!: number;
+    vocabulaireId!: number;
+    status!: 'start' | 'doing' | 'completed';
+    percentComplete?: number;
+    vocabulaireQuestionListId?: string;
 }
 
 UserVocabulaire.init(

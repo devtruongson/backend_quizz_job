@@ -16,29 +16,7 @@ export default [
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
-      'prettier/prettier': [
-        'warn',
-        {
-          "arrowParens": "always",
-          "bracketSameLine": false,
-          "bracketSpacing": true,
-          "embeddedLanguageFormatting": "auto",
-          "htmlWhitespaceSensitivity": "css",
-          "insertPragma": false,
-          "jsxSingleQuote": false,
-          "printWidth": 120,
-          "proseWrap": "preserve",
-          "quoteProps": "as-needed",
-          "requirePragma": false,
-          "semi": true,
-          "singleQuote": true,
-          "tabWidth": 4,
-          trailingComma: 'all',
-          "useTabs": false,
-          "vueIndentScriptAndStyle": false
-        }
-
-      ]
+      'prettier/prettier': "off"
     },
     ignores: ['**/node_modules/', '**/dist/']
   }

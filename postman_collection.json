@@ -1,0 +1,618 @@
+{
+  "info": {
+    "name": "Quiz Backend API",
+    "description": "API collection cho ứng dụng Quiz học từ vựng",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"nguyenvanA@gmail.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/register",
+              "host": ["{{base_url}}"],
+              "path": ["users", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"nguyenvanA@gmail.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/login",
+              "host": ["{{base_url}}"],
+              "path": ["users", "login"]
+            }
+          }
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@quiz.com\",\n  \"password\": \"admin123\",\n  \"role\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["users"]
+            }
+          }
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["users"]
+            }
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/users/1",
+              "host": ["{{base_url}}"],
+              "path": ["users", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"nguyenvanA_updated@gmail.com\",\n  \"password\": \"newpassword123\",\n  \"role\": \"user\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/1",
+              "host": ["{{base_url}}"],
+              "path": ["users", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/users/1",
+              "host": ["{{base_url}}"],
+              "path": ["users", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Topics",
+      "item": [
+        {
+          "name": "Create Topic",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Gia đình\",\n  \"description\": \"Học từ vựng về các thành viên trong gia đình\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/topics",
+              "host": ["{{base_url}}"],
+              "path": ["topics"]
+            }
+          }
+        },
+        {
+          "name": "Get All Topics",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/topics",
+              "host": ["{{base_url}}"],
+              "path": ["topics"]
+            }
+          }
+        },
+        {
+          "name": "Get Topic by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/topics/1",
+              "host": ["{{base_url}}"],
+              "path": ["topics", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Topic",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Gia đình và Bạn bè\",\n  \"description\": \"Học từ vựng về gia đình và các mối quan hệ xã hội\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/topics/1",
+              "host": ["{{base_url}}"],
+              "path": ["topics", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Topic",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/topics/1",
+              "host": ["{{base_url}}"],
+              "path": ["topics", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vocabulaires",
+      "item": [
+        {
+          "name": "Create Vocabulaire",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topicId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vocabulaires",
+              "host": ["{{base_url}}"],
+              "path": ["vocabulaires"]
+            }
+          }
+        },
+        {
+          "name": "Get All Vocabulaires",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/vocabulaires",
+              "host": ["{{base_url}}"],
+              "path": ["vocabulaires"]
+            }
+          }
+        },
+        {
+          "name": "Get Vocabulaire by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/vocabulaires/1",
+              "host": ["{{base_url}}"],
+              "path": ["vocabulaires", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Vocabulaire",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topicId\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vocabulaires/1",
+              "host": ["{{base_url}}"],
+              "path": ["vocabulaires", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Vocabulaire",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/vocabulaires/1",
+              "host": ["{{base_url}}"],
+              "path": ["vocabulaires", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vocabulaire Questions",
+      "item": [
+        {
+          "name": "Create Vocabulaire Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audio_vi\": \"https://example.com/audio/father_vi.mp3\",\n  \"audio_en\": \"https://example.com/audio/father_en.mp3\",\n  \"image\": \"https://example.com/images/father.jpg\",\n  \"title_vi\": \"Bố\",\n  \"title_en\": \"Father\",\n  \"description_vi\": \"Người cha trong gia đình\",\n  \"description_en\": \"The male parent in a family\",\n  \"vocabulaireId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vocabulaire-questions",
+              "host": ["{{base_url}}"],
+              "path": ["vocabulaire-questions"]
+            }
+          }
+        },
+        {
+          "name": "Get All Vocabulaire Questions",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/vocabulaire-questions",
+              "host": ["{{base_url}}"],
+              "path": ["vocabulaire-questions"]
+            }
+          }
+        },
+        {
+          "name": "Get Vocabulaire Question by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/vocabulaire-questions/1",
+              "host": ["{{base_url}}"],
+              "path": ["vocabulaire-questions", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Vocabulaire Question",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title_vi\": \"Cha\",\n  \"title_en\": \"Dad\",\n  \"description_vi\": \"Cách gọi thân mật cho người cha\",\n  \"description_en\": \"An affectionate term for father\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vocabulaire-questions/1",
+              "host": ["{{base_url}}"],
+              "path": ["vocabulaire-questions", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Vocabulaire Question",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/vocabulaire-questions/1",
+              "host": ["{{base_url}}"],
+              "path": ["vocabulaire-questions", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Vocabulaires",
+      "item": [
+        {
+          "name": "Create User Vocabulaire",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"vocabulaireId\": 1,\n  \"status\": \"start\",\n  \"percentComplete\": 0,\n  \"vocabulaireQuestionListId\": \"[1,2,3,4,5]\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user-vocabulaires",
+              "host": ["{{base_url}}"],
+              "path": ["user-vocabulaires"]
+            }
+          }
+        },
+        {
+          "name": "Get All User Vocabulaires",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/user-vocabulaires",
+              "host": ["{{base_url}}"],
+              "path": ["user-vocabulaires"]
+            }
+          }
+        },
+        {
+          "name": "Get User Vocabulaire by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/user-vocabulaires/1",
+              "host": ["{{base_url}}"],
+              "path": ["user-vocabulaires", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update User Vocabulaire",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"doing\",\n  \"percentComplete\": 50\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user-vocabulaires/1",
+              "host": ["{{base_url}}"],
+              "path": ["user-vocabulaires", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete User Vocabulaire",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/user-vocabulaires/1",
+              "host": ["{{base_url}}"],
+              "path": ["user-vocabulaires", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Exams",
+      "item": [
+        {
+          "name": "Create User Exam",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"list\": \"[{\\\"questionId\\\": 1, \\\"answer\\\": \\\"Father\\\", \\\"isCorrect\\\": true}, {\\\"questionId\\\": 2, \\\"answer\\\": \\\"Mother\\\", \\\"isCorrect\\\": true}]\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user-exams",
+              "host": ["{{base_url}}"],
+              "path": ["user-exams"]
+            }
+          }
+        },
+        {
+          "name": "Get All User Exams",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/user-exams",
+              "host": ["{{base_url}}"],
+              "path": ["user-exams"]
+            }
+          }
+        },
+        {
+          "name": "Get User Exam by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/user-exams/1",
+              "host": ["{{base_url}}"],
+              "path": ["user-exams", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update User Exam",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"list\": \"[{\\\"questionId\\\": 1, \\\"answer\\\": \\\"Father\\\", \\\"isCorrect\\\": true}, {\\\"questionId\\\": 2, \\\"answer\\\": \\\"Mother\\\", \\\"isCorrect\\\": true}, {\\\"questionId\\\": 3, \\\"answer\\\": \\\"Sister\\\", \\\"isCorrect\\\": false}]\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user-exams/1",
+              "host": ["{{base_url}}"],
+              "path": ["user-exams", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete User Exam",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/user-exams/1",
+              "host": ["{{base_url}}"],
+              "path": ["user-exams", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Exam Questions",
+      "item": [
+        {
+          "name": "Create Exam Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vocabulaireQuestionId\": 1,\n  \"answer\": \"Father\",\n  \"isCorrect\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/exam-questions",
+              "host": ["{{base_url}}"],
+              "path": ["exam-questions"]
+            }
+          }
+        },
+        {
+          "name": "Get All Exam Questions",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/exam-questions",
+              "host": ["{{base_url}}"],
+              "path": ["exam-questions"]
+            }
+          }
+        },
+        {
+          "name": "Get Exam Question by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/exam-questions/1",
+              "host": ["{{base_url}}"],
+              "path": ["exam-questions", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Exam Question",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"answer\": \"Dad\",\n  \"isCorrect\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/exam-questions/1",
+              "host": ["{{base_url}}"],
+              "path": ["exam-questions", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Exam Question",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/exam-questions/1",
+              "host": ["{{base_url}}"],
+              "path": ["exam-questions", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+} 

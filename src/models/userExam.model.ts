@@ -14,9 +14,9 @@ export default class UserExam
     extends Model<UserExamAttributes, UserExamCreationAttributes>
     implements UserExamAttributes
 {
-    public id!: number;
-    public userId!: number;
-    public list?: string;
+    id!: number;
+    userId!: number;
+    list?: string;
 }
 
 UserExam.init(
