@@ -1,0 +1,65 @@
+import { Request, Response } from 'express';
+import Vocabulaire from '~/models/vocabulaire.model';
+
+export async function createVocabulaire(req: Request, res: Response) {
+    try {
+        const vocabulaire = await Vocabulaire.create(req.body);
+        res.status(201).json(vocabulaire);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to create vocabulaire' });
+    }
+}
+
+export async function getVocabulaires(_req: Request, res: Response) {
+    try {
+        const data = await Vocabulaire.findAll();
+        res.json(data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to fetch vocabulaires' });
+    }
+}
+
+export async function getVocabulaireById(req: Request, res: Response) {
+    try {
+        const vocabulaire = await Vocabulaire.findByPk(req.params.id);
+        if (vocabulaire) {
+            res.json(vocabulaire);
+        } else {
+            res.status(404).json({ error: 'Vocabulaire not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to fetch vocabulaire' });
+    }
+}
+
+export async function updateVocabulaire(req: Request, res: Response) {
+    try {
+        const [updated] = await Vocabulaire.update(req.body, { where: { id: req.params.id } });
+        if (updated) {
+            const vocabulaire = await Vocabulaire.findByPk(req.params.id);
+            res.json(vocabulaire);
+        } else {
+            res.status(404).json({ error: 'Vocabulaire not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to update vocabulaire' });
+    }
+}
+
+export async function deleteVocabulaire(req: Request, res: Response) {
+    try {
+        const deleted = await Vocabulaire.destroy({ where: { id: req.params.id } });
+        if (deleted) {
+            res.status(204).end();
+        } else {
+            res.status(404).json({ error: 'Vocabulaire not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to delete vocabulaire' });
+    }
+}
