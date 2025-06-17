@@ -7,13 +7,9 @@ export interface TopicAttributes {
     description?: string;
 }
 
-export interface TopicCreationAttributes
-    extends Optional<TopicAttributes, 'id' | 'description'> {}
+export type TopicCreationAttributes = Optional<TopicAttributes, 'id' | 'description'>;
 
-export default class Topic
-    extends Model<TopicAttributes, TopicCreationAttributes>
-    implements TopicAttributes
-{
+export default class Topic extends Model<TopicAttributes, TopicCreationAttributes> implements TopicAttributes {
     public id!: number;
     public title!: string;
     public description?: string;

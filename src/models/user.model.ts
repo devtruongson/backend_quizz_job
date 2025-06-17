@@ -8,13 +8,9 @@ export interface UserAttributes {
     role: 'user' | 'admin';
 }
 
-export interface UserCreationAttributes
-    extends Optional<UserAttributes, 'id' | 'role'> {}
+export type UserCreationAttributes = Optional<UserAttributes, 'id' | 'role'>;
 
-export default class User
-    extends Model<UserAttributes, UserCreationAttributes>
-    implements UserAttributes
-{
+export default class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
     public id!: number;
     public email!: string;
     public password!: string;

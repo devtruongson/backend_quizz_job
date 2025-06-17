@@ -5,6 +5,7 @@ import configCors from './configs/cors.config';
 import configRequest from './configs/req.config';
 import sequelize from './configs/db.config';
 import initModels from './models';
+import apiRouter from './routes';
 
 const app: Application = express();
 const PORT: number = parseInt(process.env.PORT || '8080');
@@ -15,6 +16,8 @@ configCors(app);
 configRequest(app);
 
 initModels();
+
+app.use('/api', apiRouter);
 
 async function start() {
     try {

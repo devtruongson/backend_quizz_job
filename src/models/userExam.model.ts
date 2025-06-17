@@ -8,8 +8,7 @@ export interface UserExamAttributes {
     list?: string;
 }
 
-export interface UserExamCreationAttributes
-    extends Optional<UserExamAttributes, 'id' | 'list'> {}
+export type UserExamCreationAttributes = Optional<UserExamAttributes, 'id' | 'list'>;
 
 export default class UserExam
     extends Model<UserExamAttributes, UserExamCreationAttributes>

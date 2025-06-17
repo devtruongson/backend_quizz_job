@@ -9,8 +9,7 @@ export interface ExamQuestionAttributes {
     isCorrect?: boolean;
 }
 
-export interface ExamQuestionCreationAttributes
-    extends Optional<ExamQuestionAttributes, 'id' | 'answer' | 'isCorrect'> {}
+export type ExamQuestionCreationAttributes = Optional<ExamQuestionAttributes, 'id' | 'answer' | 'isCorrect'>;
 
 export default class ExamQuestion
     extends Model<ExamQuestionAttributes, ExamQuestionCreationAttributes>

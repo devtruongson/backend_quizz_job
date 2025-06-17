@@ -19,12 +19,4 @@ export default function initModels() {
     };
 }
 
-export {
-    User,
-    Topic,
-    Vocabulaire,
-    VocabulaireQuestion,
-    UserVocabulaire,
-    UserExam,
-    ExamQuestion,
-};
+export { User, Topic, Vocabulaire, VocabulaireQuestion, UserVocabulaire, UserExam, ExamQuestion };

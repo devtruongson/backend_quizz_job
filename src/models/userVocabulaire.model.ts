@@ -12,8 +12,10 @@ export interface UserVocabulaireAttributes {
     vocabulaireQuestionListId?: string;
 }
 
-export interface UserVocabulaireCreationAttributes
-    extends Optional<UserVocabulaireAttributes, 'id' | 'percentComplete' | 'vocabulaireQuestionListId'> {}
+export type UserVocabulaireCreationAttributes = Optional<
+    UserVocabulaireAttributes,
+    'id' | 'percentComplete' | 'vocabulaireQuestionListId'
+>;
 
 export default class UserVocabulaire
     extends Model<UserVocabulaireAttributes, UserVocabulaireCreationAttributes>

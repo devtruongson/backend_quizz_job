@@ -14,8 +14,7 @@ export interface VocabulaireQuestionAttributes {
     vocabulaireId: number;
 }
 
-export interface VocabulaireQuestionCreationAttributes
-    extends Optional<VocabulaireQuestionAttributes, 'id'> {}
+export type VocabulaireQuestionCreationAttributes = Optional<VocabulaireQuestionAttributes, 'id'>;
 
 export default class VocabulaireQuestion
     extends Model<VocabulaireQuestionAttributes, VocabulaireQuestionCreationAttributes>
