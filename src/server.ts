@@ -3,6 +3,8 @@ import express, { Application } from 'express';
 import configComperssion from './configs/compression.config';
 import configCors from './configs/cors.config';
 import configRequest from './configs/req.config';
+import sequelize from './configs/db.config';
+import initModels from './models';
 
 const app: Application = express();
 const PORT: number = parseInt(process.env.PORT || '8080');
@@ -12,8 +14,18 @@ configComperssion(app);
 configCors(app);
 configRequest(app);
 
-// router
+initModels();
 
-app.listen(PORT, () => {
-    console.log('App Start Successfully With Port: ' + PORT);
-});
+async function start() {
+    try {
+        await sequelize.authenticate();
+        await sequelize.sync();
+        app.listen(PORT, () => {
+            console.log('App Start Successfully With Port: ' + PORT);
+        });
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+}
+
+start();
