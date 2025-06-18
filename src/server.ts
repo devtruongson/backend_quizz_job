@@ -7,6 +7,7 @@ import configRequest from './configs/req.config';
 import initModels from './models';
 import apiRouter from './routes';
 import bodyParser from 'body-parser';
+import initialUploadRoute from './routes/upload.route';
 
 const app: Application = express();
 const PORT: number = parseInt(process.env.PORT || '8080');
@@ -22,6 +23,7 @@ configRequest(app);
 initModels();
 
 app.use('/api', apiRouter);
+initialUploadRoute(app);
 
 async function start() {
     try {
