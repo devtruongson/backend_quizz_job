@@ -12,7 +12,7 @@ export default function initialUploadRoute(app: Application) {
         if (!req.file) {
             res.status(HttpStatusCode.BadRequest).json("File is required");
         } else {
-            res.status(HttpStatusCode.Ok).json(`http://localhost:${process.env.PORT}/api/v1/upload/file/${req.file.filename}`);
+            res.status(HttpStatusCode.Ok).json(`http://localhost:${process.env.PORT}/api/upload/file/${req.file.filename}`);
         }
     });
 
@@ -20,14 +20,13 @@ export default function initialUploadRoute(app: Application) {
         if (!req.file) {
             res.status(HttpStatusCode.BadRequest).json("File is required");
         } else {
-            res.status(HttpStatusCode.Ok).json(`http://localhost:${process.env.PORT}/api/v1/upload/pdf/file/${req.file.filename}`);
+            res.status(HttpStatusCode.Ok).json(`http://localhost:${process.env.PORT}/api/upload/pdf/file/${req.file.filename}`);
         }
     });
 
     route.get('/file/:filename', (req: Request, res: Response) => {
         const { filename } = req.params;
         const filePath = path.join(__dirname, '../upload', filename);
-
         if (!fs.existsSync(filePath)) {
             res.status(HttpStatusCode.NotFound).json("File not found");
         } else {
@@ -51,5 +50,5 @@ export default function initialUploadRoute(app: Application) {
         fileStream.pipe(res);
     });
 
-    app.use('/api/v1/upload', route);
+    app.use('/api/upload', route);
 }
