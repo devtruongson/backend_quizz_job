@@ -9,7 +9,7 @@ import {
 
 const router = Router();
 
-router.post('/', createUserVocabulaire);
+router.post('/', createUserVocabulaire as any);
 router.get('/', getUserVocabulaires);
 router.get('/:id', getUserVocabulaireById);
 router.put('/:id', updateUserVocabulaire);

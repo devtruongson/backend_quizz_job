@@ -46,9 +46,25 @@ export async function createUserVocabulaire(req: Request, res: Response) {
     }
 }
 
-export async function getUserVocabulaires(_req: Request, res: Response) {
+export async function getUserVocabulaires(req: Request, res: Response) {
     try {
-        const items = await UserVocabulaire.findAll({ include: { all: true, nested: true } });
+        const { userId } = req.query;
+        console.log("userId", userId);
+        
+        let condition :any = {}
+
+        if(userId) {
+            condition = {
+                where: {
+                    userId: userId
+                }
+            }
+        }
+        
+        const items = await UserVocabulaire.findAll({ 
+            ...condition,
+            include: { all: true, nested: true } 
+        });
         res.json(items);
     } catch (error) {
         console.error(error);
